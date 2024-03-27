@@ -1,0 +1,154 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+{% include 'partials/topside.html' %}
+  
+
+    <div style="padding:10px 90px; padding-top: 90px;" >
+        <h1>COMPTAGE MANUEL</h1>
+      <table class="table bg-white">
+          <thead class="text-white" style="background:#265061f3">
+              <tr>
+                  <th scope="col">Nom du Carrefour</th>
+                  <th scope="col">Densité du Carrefour</th>
+                  <th scope="col">Activité</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for produit in produits_rouge %}
+              <tr style="background-color: rgba(255, 0, 0, 0.65)">
+                  <td>{{ produit.name }}</td>
+                  <td>{{ produit.quantity }}</td>
+                  <td>
+                    <div class="dropdown">
+                        <button class="dropbtn" style="height:37px; display:flex;align-items:center;justify-content:center;overflow:hidden">Actions</button>
+                        <div class="dropdown-content " style="text-align:center; background:#e6e3e3">
+                            <a class="btn btn-sm pl-4 pr-4"
+                            href="{% url 'ajouter_stock_home' produit.id %}">Entrées</a>
+                            <a class="btn btn-sm pl-4 pr-4"
+                            href="{% url 'retirer_stock_home' produit.id %}">Sorties</a>
+                            <a class="btn btn-sm pl-4 pr-4"
+                            href="{% url 'products-edit-home' produit.id %}">Modifier</a>
+                            <a class="btn btn-sm pl-4 pr-4"
+                          href="{% url 'dashboard-products-delete' produit.id %}">Delete</a>
+                        </div>
+                    </div>
+                       
+                  </td>
+              </tr>
+              {% empty %}
+                  <p>Aucune alerte rouge pour le moment.</p>
+              {% endfor %}
+            {% for produit in produits_orange %}
+              <tr style="background-color: rgba(255, 166, 0, 0.65)">
+                  <td>{{ produit.name }}</td>
+                  <td>{{ produit.quantity }}</td>
+                  <td>
+
+                    <div class="dropdown">
+                        <button class="dropbtn" style="height:37px; display:flex;align-items:center;justify-content:center; overflow:hidden">Actions</button>
+                        <div class="dropdown-content" style="text-align:center; background:#e6e3e3">
+                            <a class="btn btn-sm pl-4 pr-4"
+                            href="{% url 'ajouter_stock_home' produit.id %}">Entrées</a>
+                            <a class="btn btn-sm pl-4 pr-4"
+                            href="{% url 'retirer_stock_home' produit.id %}">Sorties</a>
+                            <a class="btn btn-sm pl-4 pr-4"
+                            href="{% url 'products-edit-home' produit.id %}">Modifier</a>
+                            <a class="btn btn-sm pl-4 pr-4"
+                          href="{% url 'dashboard-products-delete' produit.id %}">Delete</a>
+                        </div>
+                    </div>
+                  </td>
+              </tr>
+              {% empty %}
+                  <p>Aucune alerte orange pour le moment.</p>
+              {% endfor %}
+          </tbody>
+      </table>
+  </div>
+
+
+
+  <div style="padding:10px 90px;">
+    <h1>Controle Capteurs</h1>
+  <table class="table bg-white">
+      <thead class="text-white" style="background:#265061f3">
+          <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Opérations</th>
+              <th scope="col">Exécutant</th>
+              <th scope="col">Fréquence</th>
+              <th scope="col">Activité</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for maint in maint_rouge %}
+          <tr style="background-color: rgba(255, 0, 0, 0.65)">
+            <td>{{ maint.date }}</td>
+            <td>{{ maint.operation }}</td>
+            <td>{{ maint.executant }}</td>
+            <td>{{ maint.frequence }}</td>
+            
+            <td>
+                <div class="dropdown">
+                    <button class="dropbtn" style="height:37px; display:flex;align-items:center;justify-content:center; overflow:hidden">Actions</button>
+                    <div class="dropdown-content" style="text-align:center; background:#e6e3e3">
+                        
+                        <a class="btn btn-sm pl-4 pr-4"
+                        href="{% url 'maintenance-edit-home' maint.id %}">Modifier</a>
+                        
+                      <a class="btn btn-sm pl-4 pr-4"
+                        href="{% url 'maintenance-delete' maint.id %}">Supprimer</a>
+                    </div>
+                </div>
+                
+            </td>  
+          </tr>
+          {% empty %}
+              <p>Aucune alerte rouge pour le moment.</p>
+          {% endfor %}
+        {% for maint in maint_orange %}
+          <tr style="background-color: rgba(255, 166, 0, 0.65)">
+            <td>{{ maint.date }}</td>
+            <td>{{ maint.operation }}</td>
+            <td>{{ maint.executant }}</td>
+            <td>{{ maint.frequence }}</td>
+            
+            <td>
+                <div class="dropdown">
+                    <button class="dropbtn" style="height:37px; display:flex;align-items:center;justify-content:center; overflow:hidden">Actions</button>
+                    <div class="dropdown-content" style="text-align:center; background:#e6e3e3">
+                        
+                        <a class="btn btn-sm pl-4 pr-4"
+                        href="{% url 'maintenance-edit-home' maint.id %}">Modifier</a>
+                        
+                      <a class="btn btn-sm pl-4 pr-4"
+                        href="{% url 'maintenance-delete' maint.id %}">Supprimer</a>
+                    </div>
+                </div>
+            </td> 
+          </tr>
+          {% empty %}
+              <p>Aucune alerte orange pour le moment.</p>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+    
+    
+    
+</html>
+
+{% else %}
+    {% include 'dashboard/customer_index.html' %}
+    {% endif%}
+    
+    {% endblock %}
+
+
+
+
+    

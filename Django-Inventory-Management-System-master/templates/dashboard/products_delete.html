@@ -1,0 +1,23 @@
+{% extends 'partials/base.html' %}
+{% block title %}Product Delete Page{% endblock %}
+
+{% block content %}
+
+<div class="row my-4" style="padding-top: 90px;">
+    <div class="col-md-6 offset-md-3">
+        <div class="border p-3 bg-white">
+            <h3>Suppression d'un élément du Stock </h3>
+            <hr>
+            <form method="POST">
+                <div class="alert alert-danger">
+                    <h4>Etes vous sûr de vouloir Supprimer {{ item }}?</h4>
+                </div>
+                {% csrf_token %}
+                {{ form }}
+                <a class="btn btn-secondary btn-sm" href="{% url 'dashboard-products' %}">Fermer</a>
+                <input class="btn btn-danger btn-sm" type="submit" value="Confirmer">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

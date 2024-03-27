@@ -1,0 +1,74 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-info " style="position: fixed;">
+    <div class="container-fluid pl-4 pr-4">
+        {% if user.is_authenticated %}
+        <div class="s-12 l-2">
+            <a class="navbar-brand px-2" href="{% url 'dashboard-index' %}"
+                style="font-family: 'Times New Roman', cursive;font-size:25px; background-color: rgb(255, 255, 255); color: #152732 ;">VIGILANCE VIEW</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    
+                </li>
+            </ul>
+
+
+            <div class="">
+
+                <ul class="navbar-nav ml-auto tonde">
+
+                    <li class="nav-item active"><a class="nav-link text-white" href="{% url 'home' %}"><i
+                                class="fa fa-home" aria-hidden="true"></i> Accueil</a></li>
+                    <li class="nav-item active"><a class="nav-link text-white"
+                            href="{% url 'dashboard-products' %}"></i><i class="fa fa-archive" aria-hidden="true"></i>
+                            Carrefour</a></li>
+                    <li class="nav-item active"><a class="nav-link text-white" href="{% url 'maintenance' %}"><i
+                                class="fa fa-cogs" aria-hidden="true"></i> Surveillance</a></li>
+                    <li class="nav-item active"><a class="nav-link text-white" href="{% url 'history' %}"><i
+                                class="fa fa-history" aria-hidden="true"></i> Historique</a></li>
+                    <li class="nav-item active"><a class="nav-link text-white" href="{% url 'itineraire' %}"><i
+                                class="fa fa-history" aria-hidden="true"></i> Calcul d'itineraires</a></li>
+
+
+                </ul>
+            </div>
+
+
+            <div class="dropdown">
+                <span class="dropbtn" style="background:#152732"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                <ul class="dropdown-content"
+                    style="text-align:start; background:#152732;position:absolute;left:-110px;top:32px;color:white">
+                    <li style="list-style:none"><a href="{% url 'a_propos' %}" style="color:white"><i class="fa fa-question-circle"
+                                aria-hidden="true"></i>A propos</a></li>
+                    <li style="list-style:none">
+                        <a href="{% url 'user-profile' %}" style="color:white"><i class="fas fa-users"></i> {{user.username }} Profil
+                            <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li style="list-style:none">
+                        <a href="{% url 'user-logout' %}" style="color:white"><i class="fa fa-power-off"
+                                aria-hidden="true"></i> Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+            {% else %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="{% url 'user-register' %}">Register <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'user-register' %}">Login</a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>

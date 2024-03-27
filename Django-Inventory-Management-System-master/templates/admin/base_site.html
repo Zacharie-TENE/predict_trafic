@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+
+{% comment %} {% load i18n  eatn_tags static %} {% endcomment %}
+
+{% load i18n %}
+
+{% load static %}
+
+ 
+
+{% block title %}{{ title }} | {% trans "VIGILANCE VIEW " %}{% endblock %}
+
+{% block extrastyle %}
+
+    <link rel="stylesheet" type="text/css" href="{% static "admin/admin_colo.css" %}"/>
+
+{% endblock %}
+
+ <style>
+    #content h1{
+
+text-align: center;
+
+border: 4px solid rgba(26, 48, 121, 0.795);
+
+border-radius: 32px;
+
+}
+ </style>
+
+{% block branding %}
+
+    <h1 id="site-name" class="navbar-brand px-2" href="{% url 'dashboard-index' %}"
+    style="font-family: 'Times New Roman', cursive;font-size:25px; background-color: rgb(255, 255, 255); color: #152732 ;">{% trans "VIGILANCE_VIEW" %}</h1>
+
+{% endblock %}
+
+ 
+
+{% block nav-global %}{% endblock %}

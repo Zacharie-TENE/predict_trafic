@@ -1,0 +1,182 @@
+{% extends 'partials/base.html' %}
+{% block title %}Products Page{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% include 'partials/topside.html' %}
+<style>
+    .container {
+  width: 100%;
+}
+
+.left {
+  float: left;
+  width: 50%;
+}
+
+.right {
+  float: right;
+  width: 50%;
+}
+</style>
+
+<div style="padding:90px 90px 10PX 90PX;" >
+    
+    
+    <div class="">
+        <div class="col-md-9 " style="padding:10px 0px;">
+            <div class="card card-body ">
+                <h4>Ajouter Carrefour à Gérer</h4>
+                <hr>
+                    <form method="POST" class="abs">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <input class="btn btn-success btn-block" type="submit" value="Ajouter">
+                    </form>
+    
+            </div>
+        </div>
+        <table class="table bg-white">
+            <thead class="text-white" style="background:#265061f3">
+                <tr>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Nom du Carrefour</th>
+                    <th scope="col">Densité du Carrefour</th>
+                    <th scope="col">Activité</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produit in produits_rouge %}
+                  <tr style="background-color: rgba(255, 0, 0, 0.65)">
+                      
+                      <td>{{ produit.category }}</td>
+                      <td>{{ produit.name }}</td>
+                      <td>{{ produit.quantity }}</td>
+                      <td>
+                        <div class="dropdown">
+                            <button class="dropbtn" style="height:37px; display:flex;align-items:center;justify-content:center;overflow:hidden">Actions</button>
+                            <div class="dropdown-content " style="text-align:center; background:#e6e3e3">
+                                <a class="btn btn-sm pl-4 pr-4"
+                                href="{% url 'ajouter_stock' produit.id %}">Entrées</a>
+                                <a class="btn btn-sm pl-4 pr-4"
+                                href="{% url 'retirer_stock' produit.id %}">Sorties</a>
+                                <a class="btn btn-sm pl-4 pr-4"
+                                href="{% url 'dashboard-products-edit' produit.id %}">Modifier</a>
+                                <a class="btn btn-sm pl-4 pr-4"
+                              href="{% url 'dashboard-products-delete' produit.id %}">Delete</a>
+                            </div>
+                        </div>
+                           
+                      </td>
+                  </tr>
+                  {% empty %}
+                      <p>Aucune alerte rouge pour le moment.</p>
+                  {% endfor %}
+                {% for produit in produits_orange %}
+                  <tr style="background-color: rgba(255, 166, 0, 0.65)">
+                      
+                      <td>{{ produit.category }}</td>
+                      <td>{{ produit.name }}</td>
+                      <td>{{ produit.quantity }}</td>
+                      <td>
+    
+                        <div class="dropdown">
+                            <button class="dropbtn" style="height:37px; display:flex;align-items:center;justify-content:center; overflow:hidden">Actions</button>
+                            <div class="dropdown-content" style="text-align:center; background:#e6e3e3">
+                                <a class="btn btn-sm pl-4 pr-4"
+                                href="{% url 'ajouter_stock' produit.id %}">Entrées</a>
+                                <a class="btn btn-sm pl-4 pr-4"
+                                href="{% url 'retirer_stock' produit.id %}">Sorties</a>
+                                <a class="btn btn-sm pl-4 pr-4"
+                                href="{% url 'dashboard-products-edit' produit.id %}">Modifier</a>
+                                <a class="btn btn-sm pl-4 pr-4"
+                              href="{% url 'dashboard-products-delete' produit.id %}">Delete</a>
+                            </div>
+                        </div>
+                      </td>
+                  </tr>
+                  {% empty %}
+                      <p>Aucune alerte orange pour le moment.</p>
+                  {% endfor %}
+
+                  {% for produit in produits_vert %}
+                  <tr style="background-color: rgba(0, 255, 98, 0.65)">
+                      
+                      <td>{{ produit.category }}</td>
+                      <td>{{ produit.name }}</td>
+                      <td>{{ produit.quantity }}</td>
+                      <td>
+    
+                        <div class="dropdown">
+                            <button class="dropbtn" style="height:37px; display:flex;align-items:center;justify-content:center; overflow:hidden">Actions</button>
+                            <div class="dropdown-content" style="text-align:center; background:#e6e3e3">
+                                <a class="btn btn-sm pl-4 pr-4"
+                                href="{% url 'ajouter_stock' produit.id %}">Entrées</a>
+                                <a class="btn btn-sm pl-4 pr-4"
+                                href="{% url 'retirer_stock' produit.id %}">Sorties</a>
+                                <a class="btn btn-sm pl-4 pr-4"
+                                href="{% url 'dashboard-products-edit' produit.id %}">Modifier</a>
+                                <a class="btn btn-sm pl-4 pr-4"
+                              href="{% url 'dashboard-products-delete' produit.id %}">Delete</a>
+                            </div>
+                        </div>
+                      </td>
+                  </tr>
+                  {% empty %}
+                      <p>Aucune alerte orange pour le moment.</p>
+                  {% endfor %}
+              </tbody>
+        </table>
+    </div>
+  
+</div>
+    <div class="" style="padding:10px 90px;"> 
+        <div class="">
+            
+            <div class="col-md-50 ">
+                <div class="bg-white">
+                    <div class="card-body ml-2">
+                        <canvas id="myChart1" width="500" height="200"></canvas>
+                        <script>
+                            var ctx = document.getElementById('myChart1').getContext('2d');
+                            var myChart1 = new Chart(ctx, {
+                                type: 'pie',
+                                data: {
+                                    labels: ["[QTE >= 10] ELEMENTS EN QUANTITE SUFFISANTE ","[10 >= QTE > 3] ELEMENTS EN ALERTE ORANGE ","[3 > QTE] ELEMENTS EN ALERTE ROUGE " ],
+                                datasets: [{
+                                    label: 'Number of Products',
+                                data: [{{vert_count}},{{orange_count}},{{rouge_count}} ],
+                                backgroundColor: [
+                                    'rgba(0, 255, 98, 0.65)',
+                                    'rgba(255, 166, 0, 0.65)',
+                                    'rgba(255, 0, 0, 0.65)'
+                                ],
+                                borderColor: [
+                                'rgba(0, 255, 98, 0.65)',
+                                    'rgba(255, 166, 0, 0.65)',
+                                    'rgba(255, 0, 0, 0.65)'
+                                ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                         }
+                                    }]
+                                }
+                             }
+                         });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

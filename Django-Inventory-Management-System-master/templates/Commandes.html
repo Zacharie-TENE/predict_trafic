@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Parcours Opportuniste D'itinéraires</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: url("background.png") no-repeat center center fixed;
+      background-size: cover;
+    }
+    
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .form-group select,
+    .form-group input[type="text"],
+    .form-group input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    .form-group input[type="submit"] {
+      background-color: #4CAF50;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .form-group input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    
+    .form-group input:invalid {
+      border-color: red;
+    }
+    
+    .form-group input:valid {
+      border-color: green;
+    }
+    
+    .form-group input[type="number"]::-webkit-inner-spin-button,
+    .form-group input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    .form-group input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      var selectElements = document.querySelectorAll('select');
+      for (var i = 0; i < selectElements.length; i++) {
+        var options = Array.from(selectElements[i].options);
+        options.sort(function(a, b) {
+          return a.text.localeCompare(b.text);
+        });
+        selectElements[i].innerHTML = '';
+        options.forEach(function(option) {
+          selectElements[i].appendChild(option);
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Parcours Opportuniste D'itinéraires</h2>
+    <form>
+      <div class="form-group">
+        <label for="lieu-depart">Lieu de départ:</label>
+        <select id="lieu-depart" name="lieu-depart">
+          <option value=1>Carrefour Obili</option>
+          <option value=2>Carrefour Biyem-Assi</option>
+          <option value=3>Carrefour Melen</option>
+          <option value=4>Carrefour Simbock</option>
+          <option value=5>Carrefour Etoug ebe</option>
+          <option value=6>Carrefour Mvog BI</option>
+          <option value=7>Carrefour Mvan</option>
+          <option value=8>Carrefour Odza</option>
+          <option value=9>Carrefour Mvog-ada</option>
+          <option value=10>Carrefour Awae</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="destination">Destination:</label>
+        <select id="destination" name="destination">
+            <option value=1>Carrefour Obili</option>
+            <option value=2>Carrefour Biyem-Assi</option>
+            <option value=3>Carrefour Melen</option>
+            <option value=4>Carrefour Simbock</option>
+            <option value=5>Carrefour Etoug ebe</option>
+            <option value=6>Carrefour Mvog BI</option>
+            <option value=7>Carrefour Mvan</option>
+            <option value=8>Carrefour Odza</option>
+            <option value=9>Carrefour Mvog-ada</option>
+            <option value=10>Carrefour Awae</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="heure-depart">Heure de départ:</label>
+        <input type="time" id="heure-depart" name="heure-depart">
+      </div>
+      <div class="form-group">
+        <label for="prix">Prix:</label>
+        <input type="number" id="prix" name="prix" min="100" max="3000" pattern="[0-9]+" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Trouvez L'itinéraire Optimal">
+      </div>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'partials/base.html' %}
+{% block title %}Products Edit Page{% endblock %}
+
+
+{% block content %}
+<div class="row my-4" style="padding-top: 90px;">
+    <div class="col-md-6 offset-md-3 p-3 bg-white">
+        <h3>Modifier Plan de Maintenance</h3>
+        <hr>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="btn btn-info" type="submit" value="Confirm">
+            <a href="{% url 'maintenance' %}" class = "btn btn-info"> Retour en arrière</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

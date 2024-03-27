@@ -1,0 +1,69 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+{% include 'partials/topside.html' %}
+  
+  
+    
+    <!-- MAIN -->
+    <main role="main" style="padding-top: 90px;">
+      <!-- Content -->
+      <article> 
+        <div class="section background-white"> 
+          <div class="line">  
+            <h2 class="text-size-40 padding-bottom-10">A Propos De <i><b>VIGILANCE VIEW</b></i></h2>
+            <hr class="break-small background-primary margin-bottom-30">
+            <div class="row mx-5" >
+            <div class="col-4 text-justify">
+              <p>
+                Cet outil a été conçu par le Groupe 11 dans le cadre du projet de NetWork Management sous la supervision du Professeur et Ingénieur Thomas DJOTIO à l’Ecole Nationale Supérieure Polytechnique de Yaoundé. 
+                Ce projet a pour thème : Modélisation d'un parcours opportuniste d'itinéraires
+              
+              </p>
+              <!-- <blockquote class="">
+                
+                  <a href="{% url 'view_pdf' %}">
+                    <img class="mem" src="{% static 'memoire/memoire.png' %}" alt="Lien vers le mémoire de Patricia"><br>
+                    <h3 class="text-size-20 text-line-height-1 ">lien vers le mémoire de <B>Patricia</B></h3>
+                  </a>
+                
+                
+              </blockquote> -->
+            </div>
+            
+            <div class="col-8 p-2" >
+              <img src="{% static 'img/propos.png'%}" alt="login image" class="login__img">
+            </div>
+          </div>
+            
+            
+            <div class="line margin-top-30">
+              <div class="margin">
+                <div class="s-12 m-6 l-6">
+                  <img src="img/img-01.jpg" alt="">
+                  <p class="margin-top-30">
+                  
+                  </p>
+                </div>
+                <div class="s-12 m-6 l-6">
+                  <img src="img/img-02.jpg" alt="">
+                  <p class="margin-top-30">
+                  
+                  </p>
+                </div>
+              </div>
+            </div>      
+          </div>
+        </div> 
+      </article>
+    </main>
+    
+    
+{% else %}
+    {% include 'dashboard/customer_index.html' %}
+    {% endif%}
+    
+    {% endblock %}

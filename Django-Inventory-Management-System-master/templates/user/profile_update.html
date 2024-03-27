@@ -1,0 +1,29 @@
+{% extends 'partials/base.html' %}
+{% block title %}Customer Page{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="row my-4" style="padding:10px 90px; padding-top: 90px;">
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                Page detaillée du profil
+            </div>
+            <div class="row p-3">
+                <div class="col-md-8">
+                    <form action="" method="POST" enctype="multipart/form-data" >
+                        {% csrf_token %}
+                        {{u_form.as_p}}
+                        {{p_form.as_p}}
+                        <input class="btn btn-info" type="submit" value="Modifie">
+                        <a href="{% url 'user-profile' %}" class = "btn btn-info"> Retour en arrière</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

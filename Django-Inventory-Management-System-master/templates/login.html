@@ -1,0 +1,97 @@
+{% load static %}
+
+{% block title %}Login Page{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+      <!--=============== CSS ===============-->
+      
+      <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+
+      <link rel="stylesheet" href="{% static 'fonts/fonta/css/all.min.css'%}">
+
+
+      <title>Animated login form - Bedimcode</title>
+
+      <style>
+         button {
+      display: block;
+      width: 300px;
+      margin: 50px auto 30px;
+      padding: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      background-color: rgb(22, 34, 104);
+      ;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #51a0e6;
+    }
+      </style>
+   </head>
+   <body>
+      <div class="login">
+         
+         <img src="{% static 'img/logn-b.png'%}" alt="login image" class="login__img">
+
+         <form action="" class="login__form" method="POST">
+            <h1 class="login__title">Utilisateur Simple</h1>
+            {% csrf_token %}
+            <div class="login__content">
+               <div class="login__box">
+                  <i class="ri-user-3-line login__icon"></i>
+
+                  <div class="login__box-input">
+                     <input type="text" required class="login__input" placeholder=" " name="username">
+                     <label for="" class="login__label">Nom d'Utilisateur</label>
+                  </div>
+               </div>
+
+               <div class="login__box">
+                  <i class="ri-lock-2-line login__icon"></i>
+
+                  <div class="login__box-input">
+                     <input type="password" required class="login__input" id="login-pass" placeholder=" " name="pass">
+                     <label for="" class="login__label">Mot de Passe</label>
+                     <i class="ri-eye-off-line login__eye" id="login-eye"></i>
+                  </div>
+               </div>
+            </div>
+
+            <div class="login__check">
+               <div class="login__check-group">
+                  <input type="checkbox" class="login__check-input">
+                  <label for="" class="login__check-label">Se Souvenir de Moi</label>
+               </div>
+
+               <a href="#" class="login__forgot">Mot de Passe Oublié ?</a>
+            </div>
+
+            <button type="submit" class="">S'authentifier</button>
+
+            
+         </form>
+      
+      </div>
+      
+      <!--=============== MAIN JS ===============-->
+      
+      <script src= "{% static 'js/main.js'%}"></script>
+
+      <script src= "{% static 'fonts/fonta/js/all.min.js'%}"></script>
+      
+   </body>
+</html>
+{% endblock %}

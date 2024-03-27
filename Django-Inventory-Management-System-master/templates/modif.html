@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Choisissez votre rôle</title>
+  <style>
+
+
+body{
+
+      font-family: Arial, sans-serif;
+      background: url("static/img/role.jpg");
+      background-size: cover;
+     background-repeat: no-repeat;
+     color: #fff;
+     
+      height: 500px;
+      width: 500px;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      top: 50%;
+      left: 50%;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 40px rgba(8,7,16,0.6);
+      padding: 50px 35px;
+
+/* background-image: url("https://wallpapercave.com/wp/wp2508260.jpg"); */
+
+/*  background-image: url(../images/Admin.jpg);  */
+
+}
+    h1 {
+      text-align: center;
+      margin-top: 0px;
+    }
+    a {
+      display: block;
+      width: 300px;
+      margin: 50px auto 30px;
+      padding: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      background-color: rgb(22, 34, 104);;
+      border-radius: 5px;
+    }
+    a:hover {
+      background-color: #51a0e6;
+    }
+
+   
+
+  </style>
+</head>
+
+<body>
+  
+  <h1>Choisissez votre rôle </h1>
+  <a class="btn btn-info btn-sm mr-2"
+    href="{% url 'ajouter_stock' produit.id %}">Entrées</a>
+
+  <a class="btn btn-info btn-sm mr-2"
+        href="{% url 'retirer_stock' produit.id %}">Sorties</a>
+
+    <a class="btn btn-warning btn-sm mr-2"
+        href="{% url 'dashboard-products-edit' produit.id %}">Modifier</a>
+
+    <a class="btn btn-danger btn-sm ml-2"
+        href="{% url 'dashboard-products-delete' produit.id %}">Delete</a>
+</body>
+</html>

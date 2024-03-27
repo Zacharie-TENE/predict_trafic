@@ -1,0 +1,256 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+        <link rel="stylesheet" href="{% static 'fonts/fonta/css/font-awesome.min.css'%}">
+
+        <link rel="stylesheet" href="{% static 'css/components.css'%}">
+        
+        <link rel="stylesheet" href="{% static 'css/icons.css'%}">
+        
+        <link rel="stylesheet" href="{% static 'css/responsee.css'%}">
+        
+        <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css'%}">
+        
+        <link rel="stylesheet" href="{% static 'owl-carousel/owl.theme.css'%}">
+             
+        <link rel="stylesheet" href="{% static 'css/template-style.css'%}">
+        <link href='https://fonts.googleapis.com/css?family=Playfair+Display&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        
+        <script type="text/javascript" src="{% static 'js/jquery-1.8.3.min.js'%}"></script>
+        
+        <script type="text/javascript" src="{% static 'js/jquery-ui.min.js'%}"></script>      
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!--FontAwesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+        integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <!--Chartjs CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+    <!--Custome CSS-->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+      </style>
+    <style>
+      .abs p{
+        display: grid;
+        grid-template-rows: 30px;
+        grid-template-columns: 0.8fr 1.35fr;
+        gap: 6px;
+        font-size: 16px;
+      }
+      .abe p{
+        display: grid;
+        grid-template-rows: 30px;
+        grid-template-columns: 0.8fr 1.35fr;
+        gap: 6px;
+        font-size: 15px;
+      }
+
+      .abe .form-group{
+        display: grid;
+        grid-template-rows: 30px;
+        grid-template-columns: 0.8fr 1.35fr;
+        gap: 6px;
+        font-size: 15px;
+      }
+
+      .abs p input{
+        width: 100%;
+      }
+      .tabb{
+        width: 100%;
+      }
+
+    
+      table td {
+  font-size: 16px;
+}
+
+table thead {
+  font-size: 18px;
+}
+
+
+      /* Bouton */
+/* Bouton */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Conteneur de la liste déroulante */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Contenu de la liste déroulante (masqué par défaut) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%; /* changer la position horizontale */
+  z-index: 1;
+}
+
+/* Styles de chaque option de la liste déroulante */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Changement de style lorsque la souris survole l'un des éléments de la liste */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Affichage de la liste déroulante lorsque la souris survole le bouton */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.mem{
+  width: 50%; /* réduit la largeur de l'image de moitié */
+  height: 50%; /* maintient le ratio d'aspect de l'image */
+  vertical-align: middle;
+  padding: 0px 5px 0px 5px;
+}
+
+.tonde li a:active a:focus{
+	display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 15px 24px 15px;
+  font-size: 14px;
+  color: #fff;
+  white-space: nowrap;
+  transition: 0.3s;
+	background: red;
+  }
+    </style>
+</head>
+
+<body>
+    {% include 'partials/nav.html' %}
+
+    <div class="">
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <!-- Contact Us -->
+        
+        
+        <!-- Main Footer -->
+        <section class="background-dark full-width">
+          <!-- Map -->
+          <div class="s-12 m-12 l-6 margin-m-bottom-2x">
+            <div class="s-12 grayscale center">  
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3980.7559787274486!2d11.497421!3d3.8624558!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x108bcfa23aace247%3A0xe07671abb10169f9!2s%C3%89cole%20Nationale%20Sup%C3%A9rieure%20Polytechnique%20de%20Yaound%C3%A9!5e0!3m2!1sfr!2scm!4v1706596955763!5m2!1sfr!2scm" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>              
+            </div>
+          </div>
+          
+          <!-- Collumn 2 -->
+          <div class="s-12 m-12 l-6 margin-m-bottom-2x">
+            <div class="padding-2x">
+              <div class="line">              
+                <div class="float-left">
+                    <i class="icon-sli-location-pin text-primary icon3x"></i>
+                  </div>
+                  <div class="margin-left-70 margin-bottom-30">
+                    <h3 class="margin-bottom-0">Notre Adresse et notre Siège </h3>
+                    <p>5 Ecole Nationale Supérieure Polytechnique de Yaoundé, Centre, BP 8390<br>
+                      Yaoundé, Cameroun
+                    </p>               
+                  </div>
+                  <div class="float-left">
+                    <i class="icon-sli-envelope text-primary icon3x"></i>
+                  </div>
+                  <div class="margin-left-70 margin-bottom-30">
+                    <h3 class="margin-bottom-0">E-mail</h3>
+                    <p>etudiant@polytechnique.cm<br>
+                       
+                    </p>              
+                  </div>
+                  <div class="float-left">
+                    <i class="icon-sli-phone text-primary icon3x"></i>
+                  </div>
+                  <div class="margin-left-70">
+                    <h3 class="margin-bottom-0">Phone Numbers</h3>
+                    <p>+237 6 70 43 32 17<br>
+                       +237 6 97 25 92 69<br>
+                      
+                    </p>             
+                  </div>
+              </div>
+            </div>
+          </div>  
+        </section>
+        <hr class="break margin-top-bottom-0" style="border-color: rgba(0, 38, 51, 0.80);">
+        
+        <!-- Bottom Footer -->
+        <section class="padding background-dark full-width">
+          <div class="s-12 l-6">
+            <p class="text-size-12">Pas de Copyright</p>
+            
+          </div>
+          <div class="s-12 l-6">
+            <a class="right text-size-12" href="http://www.myresponsee.com" title="Responsee - lightweight responsive framework">Créé et codé<br> Par Patricia Lakeine Abe'ele</a>
+          </div>
+        </section>
+      </footer>
+      
+      <script type="text/javascript" src="{% static 'js/responsee.js'%}"></script>
+      
+      <script type="text/javascript" src="{% static 'owl-carousel/owl.carousel.js'%}"></script>
+      
+      <script type="text/javascript" src="{% static 'js/template-scripts.js'%}"></script>
+    
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

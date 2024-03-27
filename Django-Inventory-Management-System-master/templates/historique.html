@@ -1,0 +1,82 @@
+{% extends 'partials/base.html' %}
+{% block title %}History Page{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% include 'partials/topside.html' %}
+<div style="padding:90px 30px;" >
+    
+<div class="row my-4">
+    <div class="col-md-4">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="card card-body">
+            <h3>Ajouter Historique</h3>
+            <hr>
+            <form method="POST" class="abe">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input class="btn btn-success btn-block" type="submit" value="Ajouter">
+            </form>
+        </div>
+    </div>
+    <div class="col-md-8 tabb">
+        <table class="table bg-white">
+            <thead class="bg-info text-white">
+                <tr>
+                    <th scope="col" style="width:13%;">Date</th>
+                    <th scope="col">Panne </th>
+                    <th scope="col">Temps d'indisponibilité(h)</th>
+                    <th scope="col">Temps total de reparation(h)</th>
+
+                    <th scope="col">Activités</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for history in history %}
+                <tr>
+                    
+                    <td>{{ history.date|date:"d-m-Y" }}</td>
+                    <td>{{ history.panne }}</td>
+                    <td>{{ history.ti }}</td>
+                    <td>{{ history.ttr }}</td>
+                    
+                    <td>
+                        <div class="dropdown">
+                            <button class="dropbtn" style="height:37px; display:flex;align-items:center;justify-content:center; overflow:hidden">Actions</button>
+                            <div class="dropdown-content" style="text-align:center; background:#e6e3e3; position:absolute;left:-114px;">
+                                
+                                <a class="btn btn-sm pl-4 pr-4"
+                                href="{% url 'historique-edit' history.id %}">Modifier</a>
+                                
+                                <form action="{% url 'history-delete' history.id %}" method="post" class = "d-inline">
+                                    {%csrf_token%}
+                                    <input class="btn btn-sm pl-4 pr-4" type="submit" class="btn btn-danger" value= "Supprimer">
+                                </form>
+                            </div>
+                        </div>    
+                    </td>                
+                </tr>
+                {% endfor %}
+
+                <tr>
+                    
+                    <td>Total</td>
+                    <td>{{ history_count }}</td>
+                    <td>{{ total_ti }}</td>
+                    <td>{{ total_ttr }}</td>
+                    
+                    <td> </td>
+                                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}

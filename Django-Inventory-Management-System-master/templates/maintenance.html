@@ -1,0 +1,116 @@
+{% extends 'partials/base.html' %}
+{% block title %}History Page{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% include 'partials/topside.html' %}
+<div style="padding:80px 40px;" >
+<div class="row my-4">
+    <div class="col-md-4">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="card card-body">
+            <h3>Plan de Surveillance et Alertes</h3>
+            <hr>
+            <form method="POST" class="abe">
+                {% csrf_token %}
+                {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+      </div>
+    {% endfor %}
+    
+
+
+
+
+                
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
+      function updateNextMaintenanceDate() {
+        const frequency = document.getElementById("id_frequence").value;
+        const currentDate = moment("2023-09-01", "YYYY-MM-DD");
+        let nextMaintenanceDate;
+
+        if (frequency === "Journalier") {
+          nextMaintenanceDate = currentDate.add(1, "days");
+        } else if (frequency === "Hebdomadaire") {
+          nextMaintenanceDate = currentDate.add(1, "weeks");
+        } else if (frequency === "Mensuel") {
+          nextMaintenanceDate = currentDate.add(1, "months");
+        } else if (frequency === "Trimestriel") {
+          nextMaintenanceDate = currentDate.add(3, "months");
+        } else if (frequency === "Semestriel") {
+          nextMaintenanceDate = currentDate.add(6, "months");
+        } else if (frequency === "Annuel") {
+          nextMaintenanceDate = currentDate.add(1, "years");
+        }
+
+        document.getElementById("id_date").value = nextMaintenanceDate.format("YYYY-MM-DD");
+      }
+
+      document.getElementById("id_frequence").addEventListener("change", updateNextMaintenanceDate);
+    </script>
+
+
+
+
+
+                <input class="btn btn-success btn-block" type="submit" value="Ajouter">
+            </form>
+        </div>
+    </div>
+    <div class="col-md-8 tabb">
+        <table class="table bg-white">
+            <thead class="bg-info text-white">
+                <tr>
+                    <th scope="col" style="width:13%;">Date</th>
+                    <th scope="col">Operation </th>
+                    <th scope="col">Exécutant</th>
+                    <th scope="col">Fréquence</th>
+                    <th scope="col">Observations</th>
+                    <th scope="col">Activités</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for maint in maint %}
+                <tr>
+                    
+                    <td>{{ maint.date|date:"d-m-Y" }}</td>
+                    <td>{{ maint.operation }}</td>
+                    <td>{{ maint.executant }}</td>
+                    <td>{{ maint.frequence }}</td>
+                    <td>{{ maint.observations }}</td>
+                    
+                    <td>
+                        <div class="dropdown">
+                            <button class="dropbtn" style="height:37px; display:flex;align-items:center;justify-content:center; overflow:hidden">Actions</button>
+                            <div class="dropdown-content" style="text-align:center; background:#e6e3e3;position:absolute;left:-114px;">
+                                
+                                <a class="btn btn-sm pl-4 pr-4"
+                                href="{% url 'maintenance-edit' maint.id %}">Modifier</a>
+                                
+                              
+                                <form action="{% url 'maintenance-delete' maint.id %}" method="post" class = "d-inline">
+                                    {%csrf_token%}
+                                    <input class="btn btn-sm pl-4 pr-4" type="submit" class="btn btn-danger" value= "Supprimer">
+                                </form>
+                            </div>
+                        </div>   
+                    </td>                
+                </tr>
+                {% endfor %}
+
+        
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}

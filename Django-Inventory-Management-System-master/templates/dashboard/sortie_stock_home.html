@@ -1,0 +1,20 @@
+{% extends 'partials/base.html' %}
+{% block title %}Products Edit Page{% endblock %}
+
+
+{% block content %}
+<div class="row my-4">
+    <div class="col-md-6 offset-md-3 p-3 bg-white">
+        <h3>Enregistrer des Sorties</h3>
+        <hr>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="number" name="quantite" value="0" min="0">
+            <button class="btn btn-info" type="submit">valider</button>
+            <a href="{% url 'home' %}" class = "btn btn-info"> Retour en arrière</a>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
