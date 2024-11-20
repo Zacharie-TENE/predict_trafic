@@ -177,3 +177,13 @@ N'oubliez pas de consulter la documentation de Django pour plus d'informations s
 
 Vous avez maintenant installé et configuré avec succès le projet. N'hésitez pas à explorer davantage la documentation officielle de Django pour en savoir plus sur ses fonctionnalités avancées ou en cas de succcès!
 Lien vers la documentation de Django : https://docs.djangoproject.com/fr/5.0/
+
+## Auteurs
+
+Ce projet dans son état actuel a été concu par :
+
+- TENE FOGANG ZACHARIE (chef de projet)
+- TCHATCHUEM DJOUM
+- TCHAKONTE CEDRICK
+- TCHINO LEA
+- TCHIENDJO
